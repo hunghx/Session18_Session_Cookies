@@ -1,19 +1,23 @@
 package ra.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 // không định nghĩa requestmappring thì đường dẫn mặc đinhj mapping của Homecontroller là ("/")
 public class HomeController {
+
+    @Autowired
+    private HttpSession httpSession;
     @GetMapping
-    public  String home(HttpServletResponse response){
+    public  String home(@ModelAttribute("cart") Object cart, HttpServletResponse response){
 //        để thiết lập 1 cookie
         // Khởi tạo đối tượng cookie
         Cookie cookie = new Cookie("username", "hunghx123");
@@ -59,4 +63,9 @@ public class HomeController {
         response.addCookie(cookie);
         return "redirect:/";
     }
+    @GetMapping("/session")
+    public String getSession(HttpSession session){
+        return "redirect:/";
+    }
+
 }

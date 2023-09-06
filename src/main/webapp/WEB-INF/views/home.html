@@ -6,6 +6,15 @@
 </head>
 <body>
 <h1>Đây là trang chủ</h1>
+<!--hiển thị tên ng đăng nhập nếu có-->
 
+<th:block th:if="${session.userlogin}!=null">
+    <p th:text="${session.userlogin.username}"></p>
+    <a href="/auth/logout">Log Out</a>
+</th:block>
+<th:block th:unless="${session.userlogin}!=null">
+
+    <a href="/auth/login">Login</a>
+</th:block>
 </body>
 </html>
