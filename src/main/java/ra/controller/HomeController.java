@@ -52,4 +52,11 @@ public class HomeController {
         response.addCookie(cookie);
         return "count";
     }
+        @GetMapping("/clearCookies")
+    public String clear(@CookieValue String count,HttpServletResponse response){
+        Cookie cookie = new Cookie("count",count);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
+    }
 }
